@@ -1,27 +1,19 @@
+import collections
+
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
-        s_len = len(s)
-        t_len = len(t)
+        s_map = collections.defaultdict(int)
+        for c in s: 
+            s_map[c] += 1
+        
+        for c in t: 
+            if c not in s_map.keys():
+                return False 
+            else:
+                s_map[c] -= 1
 
-        if s_len != t_len:
-            return False
-
-        s_dict = {}
-        t_dict = {}
-
-        for i in range(s_len):
-            if s[i] in s_dict.keys():
-                s_dict[s[i]] += 1
-            elif s[i] not in s_dict.keys():
-                s_dict[s[i]] = 1
-
-            if t[i] in t_dict.keys():
-                t_dict[t[i]] += 1
-            elif t[i] not in t_dict.keys():
-                t_dict[t[i]] = 1
-
-        for i in range(t_len):
-            if t[i] not in s_dict.keys() or s_dict[t[i]] != t_dict[t[i]]:
-                return False
-
-        return True
+        for val in s_map.values():
+            if val != 0: 
+                return False 
+        
+        return True 
