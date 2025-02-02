@@ -23,6 +23,8 @@ class Solution:
 
         return res
 
+        # runtime: O(n * log(n)), where n is the number of elements in the list
+        
         # creating hashmap and storing frequency for each characters
         freq = {}
         res = []
